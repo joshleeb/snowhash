@@ -27,7 +27,7 @@ impl<'a> Iterator for BitStr<'a> {
         }
 
         if let Some(byte) = self.cur {
-            let bit = Bit::from_u8((byte >> self.cur_idx) & 1);
+            let bit = Bit::from_u8((byte << self.cur_idx) & 128);
             self.cur_idx += 1;
             return Some(bit);
         }
@@ -48,11 +48,11 @@ mod tests {
 
     #[test]
     fn iterate_single() {
-        assert_eq!(binary_str("a"), "10000110")
+        assert_eq!(binary_str("a"), "01100001")
     }
 
     #[test]
     fn iterate_double() {
-        assert_eq!(binary_str("bc"), "0100011011000110")
+        assert_eq!(binary_str("bc"), "0110001001100011")
     }
 }
