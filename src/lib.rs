@@ -11,33 +11,37 @@ pub mod point;
 mod bit;
 mod bitstr;
 
+/// Generate points from the provided hash string.
 pub fn generate(hash: &str) -> Vec<Point> {
     let seed: &[_] = &[2];
     let mut rng: StdRng = SeedableRng::from_seed(seed);
 
-    let mut frontier = vec![Point::origin()];
-    let mut unfilled = vec![];
+    let mut open = vec![Point::origin()];
+    let mut closed = vec![];
     let mut filled = vec![];
 
     for bit in BitStr::from_str(hash) {
-        let index = rng.gen_range(0, frontier.len());
-        let point = frontier.remove(index);
+        let index = rng.gen_range(0, open.len());
+        let point = open.remove(index);
 
         if point.on_axis() || bit.as_bool() {
             let mut reflection = point.reflection();
             filled.append(&mut reflection);
 
-            let mut untouched_neighbours: Vec<Point> = point
-                .neighbours()
-                .into_iter()
-                .filter(|p| in_slice(p) && !filled.contains(p) && !unfilled.contains(p))
-                .collect();
-            frontier.append(&mut untouched_neighbours);
-        } else {
-            unfilled.push(point)
+            let mut extension = extend(&point, &closed);
+            open.append(&mut extension);
         }
+        closed.push(point);
     }
     filled
+}
+
+fn extend(point: &Point, closed: &Vec<Point>) -> Vec<Point> {
+    point
+        .neighbours()
+        .into_iter()
+        .filter(|p| in_slice(p) && !closed.contains(p))
+        .collect()
 }
 
 fn in_slice(point: &Point) -> bool {
