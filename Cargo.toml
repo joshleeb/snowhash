@@ -5,3 +5,7 @@ authors = ["Josh Leeb-du Toit <josh.leebdutoit@gmail.com>"]
 
 [dependencies]
 rand = "0.4.2"
+
+[[bin]]
+name = "snowhash"
+path = "src/bin/snowhash/main.rs"
