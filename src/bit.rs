@@ -20,6 +20,13 @@ impl Bit {
     pub fn as_bool(&self) -> bool {
         self.0.is_some()
     }
+
+    pub fn as_u8(&self) -> u8 {
+        if self.0.is_some() {
+            return 1;
+        }
+        0
+    }
 }
 
 impl PartialEq for Bit {
@@ -35,12 +42,14 @@ mod tests {
 
     #[test]
     fn hi_bit() {
-        assert!(Bit::hi().as_bool())
+        assert!(Bit::hi().as_bool());
+        assert_eq!(Bit::hi().as_u8(), 1);
     }
 
     #[test]
     fn lo_bit() {
-        assert!(!Bit::lo().as_bool())
+        assert!(!Bit::lo().as_bool());
+        assert_eq!(Bit::lo().as_u8(), 0);
     }
 
     #[test]
