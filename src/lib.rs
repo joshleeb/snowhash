@@ -13,7 +13,7 @@ mod bitstr;
 
 /// Generate points from the provided hash string.
 pub fn generate(hash: &str) -> Vec<Point> {
-    let seed: &[_] = &[2];
+    let seed: &[_] = &[hash_sum(hash)];
     let mut rng: StdRng = SeedableRng::from_seed(seed);
 
     let mut open = vec![Point::origin()];
@@ -34,6 +34,13 @@ pub fn generate(hash: &str) -> Vec<Point> {
         closed.push(point);
     }
     filled
+}
+
+/// Sum of the integer value of each character in the provided hash.
+fn hash_sum(hash: &str) -> usize {
+    hash.as_bytes()
+        .into_iter()
+        .fold(0, |acc, byte| acc + *byte as usize)
 }
 
 fn extend(point: &Point, closed: &Vec<Point>) -> Vec<Point> {
