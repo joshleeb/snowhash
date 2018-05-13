@@ -12,7 +12,7 @@ mod bit;
 mod bitstr;
 
 pub fn generate(hash: &str) -> Vec<Point> {
-    let seed: &[_] = &[1, 2, 3, 4];
+    let seed: &[_] = &[2];
     let mut rng: StdRng = SeedableRng::from_seed(seed);
 
     let mut frontier = vec![Point::origin()];
@@ -23,16 +23,16 @@ pub fn generate(hash: &str) -> Vec<Point> {
         let index = rng.gen_range(0, frontier.len());
         let point = frontier.remove(index);
 
-        let mut untouched_neighbours: Vec<Point> = point
-            .neighbours()
-            .into_iter()
-            .filter(|p| in_slice(p) && !filled.contains(p) && !unfilled.contains(p))
-            .collect();
-        frontier.append(&mut untouched_neighbours);
-
         if point.on_axis() || bit.as_bool() {
             let mut reflection = point.reflection();
             filled.append(&mut reflection);
+
+            let mut untouched_neighbours: Vec<Point> = point
+                .neighbours()
+                .into_iter()
+                .filter(|p| in_slice(p) && !filled.contains(p) && !unfilled.contains(p))
+                .collect();
+            frontier.append(&mut untouched_neighbours);
         } else {
             unfilled.push(point)
         }
