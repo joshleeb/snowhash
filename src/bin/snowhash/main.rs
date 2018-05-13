@@ -5,8 +5,8 @@ use cairo::{Context, Format, ImageSurface};
 use snowhash::point::Point;
 use std::fs::File;
 
-const IMAGE_SIZE: i32 = 500;
-const SCALE: f64 = 4.0;
+const IMAGE_SIZE: i32 = 1200;
+const SCALE: f64 = 10.0;
 
 /// Draw the list of points as hexagons.
 fn draw_points(ctx: &Context, points: &Vec<Point>) {
