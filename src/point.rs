@@ -7,6 +7,16 @@ macro_rules! pts {
 #[derive(Debug, Clone)]
 pub struct Point(i32, i32);
 
+impl Point {
+    pub fn origin() -> Self {
+        Point(0, 0)
+    }
+
+    pub fn on_axis(&self) -> bool {
+        self.0 == 0 || self.1 == 0
+    }
+}
+
 impl PartialEq for Point {
     fn eq(&self, other: &Point) -> bool {
         self.0 == other.0 && self.1 == other.1
@@ -64,7 +74,7 @@ mod tests {
 
     #[test]
     fn neighbours_at_origin() {
-        let point = Point(0, 0);
+        let point = Point::origin();
         assert_eq!(
             point.neighbours(),
             pts![(1, 0), (-1, 0), (0, 1), (0, -1), (-1, 1), (1, -1)]
@@ -88,7 +98,7 @@ mod tests {
 
     #[test]
     fn slice_neighbours_at_origin() {
-        let point = Point(0, 0);
+        let point = Point::origin();
         assert_eq!(point.slice_neighbours(), pts![(1, 0)])
     }
 
@@ -106,7 +116,7 @@ mod tests {
 
     #[test]
     fn reflection_at_origin() {
-        let point = Point(0, 0);
+        let point = Point::origin();
         assert_eq!(point.reflection(), pts![(0, 0)])
     }
 
