@@ -6,7 +6,7 @@ use snowhash::point::Point;
 use std::fs::File;
 
 const IMAGE_SIZE: i32 = 500;
-const SCALE: f64 = 3f64;
+const SCALE: f64 = 2f64;
 
 fn draw_points(ctx: &Context, points: &Vec<Point>) {
     ctx.set_line_width(1.0);
@@ -43,7 +43,7 @@ fn main() {
     let surface = ImageSurface::create(Format::ARgb32, IMAGE_SIZE, IMAGE_SIZE).unwrap();
     let ctx = Context::new(&surface);
 
-    let points = snowhash::generate("1f83a1a1cdfa28cb1eb4e851e87d");
+    let points = snowhash::generate("cdc1a1a98b37c828f72b2df5550d658c6f092848");
     draw_points(&ctx, &points);
 
     let mut file = File::create("file.png").unwrap();
