@@ -8,6 +8,10 @@ macro_rules! pts {
 pub struct Point(i32, i32);
 
 impl Point {
+    pub fn new(x: i32, y: i32) -> Self {
+        Point(x, y)
+    }
+
     pub fn origin() -> Self {
         Point(0, 0)
     }
@@ -25,11 +29,8 @@ impl PartialEq for Point {
 impl Eq for Point {}
 
 impl Point {
-    pub fn slice_neighbours(&self) -> Vec<Point> {
-        self.neighbours()
-            .into_iter()
-            .filter(|p| p.0 >= p.1 && p.1 >= 0)
-            .collect()
+    pub fn get(&self) -> (i32, i32) {
+        (self.0, self.1)
     }
 
     pub fn reflection(&self) -> Vec<Self> {
@@ -56,7 +57,7 @@ impl Point {
         }
     }
 
-    fn neighbours(&self) -> Vec<Point> {
+    pub fn neighbours(&self) -> Vec<Point> {
         pts![
             (self.0 + 1, self.1),     // right
             (self.0 - 1, self.1),     // left
@@ -93,24 +94,6 @@ mod tests {
         assert_eq!(
             point2.neighbours(),
             pts![(3, 1), (1, 1), (2, 2), (2, 0), (1, 2), (3, 0)]
-        );
-    }
-
-    #[test]
-    fn slice_neighbours_at_origin() {
-        let point = Point::origin();
-        assert_eq!(point.slice_neighbours(), pts![(1, 0)])
-    }
-
-    #[test]
-    fn slice_neighbours_at_point() {
-        let point1 = Point(1, 0);
-        assert_eq!(point1.slice_neighbours(), pts![(2, 0), (0, 0), (1, 1)]);
-
-        let point2 = Point(2, 1);
-        assert_eq!(
-            point2.slice_neighbours(),
-            pts![(3, 1), (1, 1), (2, 2), (2, 0), (3, 0)]
         );
     }
 
