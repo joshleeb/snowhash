@@ -16,21 +16,16 @@ impl Point {
         Point(0, 0)
     }
 
+    pub fn x(&self) -> i32 {
+        self.0
+    }
+
+    pub fn y(&self) -> i32 {
+        self.1
+    }
+
     pub fn on_axis(&self) -> bool {
         self.0 == 0 || self.1 == 0
-    }
-}
-
-impl PartialEq for Point {
-    fn eq(&self, other: &Point) -> bool {
-        self.0 == other.0 && self.1 == other.1
-    }
-}
-impl Eq for Point {}
-
-impl Point {
-    pub fn get(&self) -> (i32, i32) {
-        (self.0, self.1)
     }
 
     pub fn reflection(&self) -> Vec<Self> {
@@ -68,6 +63,13 @@ impl Point {
         ]
     }
 }
+
+impl PartialEq for Point {
+    fn eq(&self, other: &Point) -> bool {
+        self.0 == other.0 && self.1 == other.1
+    }
+}
+impl Eq for Point {}
 
 #[cfg(test)]
 mod tests {

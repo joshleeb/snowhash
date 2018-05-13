@@ -6,11 +6,12 @@ use bitstr::BitStr;
 use point::Point;
 use rand::{Rng, SeedableRng, StdRng};
 
+pub mod point;
+
 mod bit;
 mod bitstr;
-mod point;
 
-pub fn snowhash(hash: &str) -> Vec<Point> {
+pub fn generate(hash: &str) -> Vec<Point> {
     let seed: &[_] = &[1, 2, 3, 4];
     let mut rng: StdRng = SeedableRng::from_seed(seed);
 
@@ -40,8 +41,7 @@ pub fn snowhash(hash: &str) -> Vec<Point> {
 }
 
 fn in_slice(point: &Point) -> bool {
-    let (x, y) = point.get();
-    x >= y && y >= 0
+    point.x() >= point.y() && point.y() >= 0
 }
 
 #[cfg(test)]
