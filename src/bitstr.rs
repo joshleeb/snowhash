@@ -15,12 +15,6 @@ impl<'a> BitStr<'a> {
             cur_idx: 0,
         }
     }
-
-    pub fn to_binary(self) -> String {
-        self.map(|b| format!("{}", b.as_u8()))
-            .collect::<Vec<String>>()
-            .join("")
-    }
 }
 
 impl<'a> Iterator for BitStr<'a> {
@@ -45,13 +39,20 @@ impl<'a> Iterator for BitStr<'a> {
 mod tests {
     use super::*;
 
+    fn binary_str(string: &str) -> String {
+        BitStr::from_str(string)
+            .map(|b| format!("{}", b.as_bool() as u8))
+            .collect::<Vec<String>>()
+            .join("")
+    }
+
     #[test]
     fn iterate_single() {
-        assert_eq!(BitStr::from_str("a").to_binary(), "10000110")
+        assert_eq!(binary_str("a"), "10000110")
     }
 
     #[test]
     fn iterate_double() {
-        assert_eq!(BitStr::from_str("bc").to_binary(), "0100011011000110")
+        assert_eq!(binary_str("bc"), "0100011011000110")
     }
 }
