@@ -1,4 +1,4 @@
-# SnowHash
+# Snowhash
 
 Procedurally generate a unique snowflake from a hash.
 
