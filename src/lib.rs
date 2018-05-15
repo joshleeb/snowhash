@@ -43,6 +43,8 @@ fn hash_sum(hash: &str) -> usize {
         .fold(0, |acc, byte| acc + *byte as usize)
 }
 
+/// Extend outwards from the point, selecting neighbours that are in the slice and haven't been
+/// seen.
 fn extend(point: &Point, closed: &Vec<Point>) -> Vec<Point> {
     point
         .neighbours()
@@ -51,6 +53,9 @@ fn extend(point: &Point, closed: &Vec<Point>) -> Vec<Point> {
         .collect()
 }
 
+/// Checks if the point is within the positive slice.
+///
+/// From this slice, rotational reflections are made to generate the entire snowflake.
 fn in_slice(point: &Point) -> bool {
     point.x() >= point.y() && point.y() >= 0
 }
