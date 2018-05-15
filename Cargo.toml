@@ -5,6 +5,7 @@ authors = ["Josh Leeb-du Toit <josh.leebdutoit@gmail.com>"]
 
 [dependencies]
 rand = "0.4.2"
+clap = "2.31.2" # Only for snowhash bin.
 cairo-rs = { version = "0.4.1", features = ["png"] } # Only for snowhash bin.
 
 [[bin]]
