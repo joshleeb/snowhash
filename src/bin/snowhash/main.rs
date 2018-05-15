@@ -1,9 +1,14 @@
+#[macro_use]
+extern crate clap;
+
 extern crate cairo;
 extern crate snowhash;
 
 use cairo::{Context, Format, ImageSurface};
 use snowhash::point::Point;
 use std::fs::File;
+
+mod app;
 
 const IMAGE_SIZE: i32 = 1200;
 const SCALE: f64 = 10.0;
@@ -48,12 +53,18 @@ fn draw_hexagon(ctx: &Context, x: f64, y: f64, r: f64) {
 
 // TODO(joshleeb): Expose CLI.
 fn main() {
+    let app = app::create();
+    let matches = app.get_matches();
+
+    let hash = matches.value_of("HASH").unwrap();
+    let output = matches.value_of("output").unwrap_or("snowflake.png");
+
     let surface = ImageSurface::create(Format::ARgb32, IMAGE_SIZE, IMAGE_SIZE).unwrap();
     let ctx = Context::new(&surface);
 
-    let points = snowhash::generate("cdc1a1a98b37c828f72b2df5550d658c6f092848");
+    let points = snowhash::generate(hash);
     draw_points(&ctx, &points);
 
-    let mut file = File::create("file.png").unwrap();
+    let mut file = File::create(output).unwrap();
     surface.write_to_png(&mut file).unwrap();
 }
