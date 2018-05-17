@@ -2,4 +2,5 @@
 members = [
     "snowhash", 
     "snowhash_png",
+    "snowhash_wasm",
 ]
