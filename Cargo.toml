@@ -1,13 +1,5 @@
-[package]
-name = "snowhash"
-version = "0.1.0"
-authors = ["Josh Leeb-du Toit <josh.leebdutoit@gmail.com>"]
-
-[dependencies]
-rand = "0.4.2"
-clap = "2.31.2" # Only for snowhash bin.
-cairo-rs = { version = "0.4.1", features = ["png"] } # Only for snowhash bin.
-
-[[bin]]
-name = "snowhash"
-path = "src/bin/snowhash/main.rs"
+[workspace]
+members = [
+    "snowhash", 
+    "snowhash_png",
+]

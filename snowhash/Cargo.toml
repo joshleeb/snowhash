@@ -1,0 +1,7 @@
+[package]
+name = "snowhash"
+version = "0.1.0"
+authors = ["Josh Leeb-du Toit <josh.leebdutoit@gmail.com>"]
+
+[dependencies]
+rand = "0.4.2"

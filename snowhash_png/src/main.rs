@@ -57,7 +57,8 @@ fn main() {
     let matches = app.get_matches();
 
     let hash = matches.value_of("HASH").unwrap();
-    let output = matches.value_of("output").unwrap_or("snowflake.png");
+    let default_output = format!("{}.png", hash);
+    let output = matches.value_of("output").unwrap_or(&default_output);
 
     let surface = ImageSurface::create(Format::ARgb32, IMAGE_SIZE, IMAGE_SIZE).unwrap();
     let ctx = Context::new(&surface);
