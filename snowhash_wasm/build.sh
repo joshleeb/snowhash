@@ -9,4 +9,4 @@ rm -rf dist
 
 cargo +nightly build ${release_flag} --target wasm32-unknown-unknown \
     && wasm-bindgen ../target/wasm32-unknown-unknown/debug/snowhash_wasm.wasm --out-dir . \
-    && webpack && cp index.html dist/index.html
+    && webpack
