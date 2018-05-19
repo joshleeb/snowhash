@@ -1,12 +1,14 @@
 const snowhash_wasm = import('./snowhash_wasm');
 
-const opts = {
-    scale : 4,
-    canvasSize : 500,
-};
-
 snowhash_wasm.then(snowhash => {
-    var ctx = canvasContext(opts, $('#hexgrid'));
+    var canvas = $('#hexgrid');
+  
+    const opts = {
+      scale: Number(canvas.attr('scale')),
+      canvasSize: Number(canvas.attr('size')),
+    };
+
+    var ctx = canvasContext(opts, canvas);
     var hashInput = $('#hashInput');
 
     hashInput.change(function() {
