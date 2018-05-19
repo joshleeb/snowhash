@@ -44,7 +44,7 @@ $ snowhash_png 1f83a1a1cdfa28cb1eb42a41078be4080051e87d
 
 Which will generate `1f83a1a1cdfa28cb1eb42a41078be4080051e87d.png`
 
-TODO: Add image.
+![](1f83a1a1cdfa28cb1eb42a41078be4080051e87d.png)
 
 ## Building
 
