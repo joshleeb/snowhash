@@ -51,7 +51,6 @@ fn draw_hexagon(ctx: &Context, x: f64, y: f64, r: f64) {
     ctx.line_to(a + x, y - b);
 }
 
-// TODO(joshleeb): Expose CLI.
 fn main() {
     let app = app::create();
     let matches = app.get_matches();
