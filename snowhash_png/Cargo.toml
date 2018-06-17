@@ -1,9 +1,0 @@
-[package]
-name = "snowhash_png"
-version = "0.1.0"
-authors = ["Josh Leeb-du Toit <josh.leebdutoit@gmail.com>"]
-
-[dependencies]
-cairo-rs = { version = "0.4.1", features = ["png"] }
-clap = "2.31.2"
-snowhash = { path = "../snowhash" }
