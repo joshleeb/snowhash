@@ -2,7 +2,7 @@
 
 Procedurally generate a unique snowflake from a hash.
 
-There will eventually be a post on [joshleeb.com](https://joshleeb.com) explaining how the Snowhash algorithm works. In the mean time there is a demo up at [joshleeb.com/projects/snowhash](https://joshleeb.com/projects/snowhash).
+There will eventually be a post on [joshleeb.com](https://joshleeb.com) explaining how the Snowhash algorithm works. In the mean time there is a demo up at [joshleeb.com/snowhash.html](https://joshleeb.com/snowhash.html).
 
 ## Building
 
