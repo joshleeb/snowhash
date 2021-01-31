@@ -1,5 +1,3 @@
-#![feature(macro_at_most_once_rep)]
-
 extern crate rand;
 
 use bitstr::BitStr;
