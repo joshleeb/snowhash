@@ -1,0 +1,41 @@
+<div class="container">
+    <h1>Snowhash</h1>
+    <p>
+        Change the hash to see the snowflake update for each change. If you get
+        tired of manually changing the hash, clicking on the snowflake (the
+        canvas) will generate a snowflake from a random hash.
+    </p>
+
+    <form>
+        <label id="hashLabel" for="hashInput">Hash:</label>
+        <span id="hashInputSpan">
+            <input id="hashInput" name="hashInput" type="text"/>
+        </span>
+    </form>
+
+    <canvas id="hexgrid" size="500", scale="3"></canvas>
+</div>
+
+<style>
+    .container {
+        width: 500px;
+    }
+
+    #hashLabel {
+        float: left;
+        padding-right: 4px;
+    }
+
+    #hashInputSpan {
+        overflow: hidden;
+        display: block;
+    }
+
+    #hashInput {
+        width: 100%;
+    }
+</style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="./index.js"></script>
