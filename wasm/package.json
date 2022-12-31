@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {},
   "dependencies": {
-    "webpack": "^4.8.3"
+    "webpack": "^5.75.0"
   },
   "devDependencies": {
     "webpack-dev-server": "^3.1.4"
